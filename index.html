@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Le Pari Sportif</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="container-fluid justify-content-center text-center">
+      <div class="row">
+        <h1 class="col">Le Projet JS - Le Pari Sportif</h2>
+        </div>
+        <div class="row">
+          <h2 class="col">Les règles :</h2>
+        </div>
+        <div class="row">
+          <p class="col">Essayer de trouver le score exact du match.
+            Si vous trouvez 50% de la réponse, vous gagnez 50 points de votre adversaire.
+            Si vous trouver le score, exacte vous gagnez 100 points.
+          </p>
+        </div>
+        <div class="row">
+          <h3 class="col">Attention vous n'avez que 5 essais.</h3>
+        </div>
+      </div>
+    </header>
+    <div class="container justify-content-center align-items-center text-center">
+      <!-- NOM DES JOUEURS-->
+      <div class="row mt-3 mb-3">
+        <div class="col">Joueur 1 :</div>
+        <div class="col">Joueur 2 :</div>
+      </div>
+      <div class="row mt-3 mb-3">
+        <div class="col">
+          <input id="nom1" type="text" class="form-control text-center" placeholder="Votre prénom ici" value="">
+        </div>
+        <div class="col">
+          <input id="nom2" type="text" class="form-control text-center" placeholder="Votre prénom ici" value="">
+        </div>
+      </div>
+      <!-- DEVINETTE SCORE JOUEUR 1-->
+      <div class="row mt-3 mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Equipe 1</span>
+            <input id="valaa" type="number" class="form-control text-center">
+            <span class="input-group-text">Equipe 2</span>
+            <input id="valba" type="number" class="form-control text-center">
+            <!-- DEVINETTE SCORE JOUEUR 2-->
+            <span class="input-group-text">Equipe 1</span>
+            <input id="valab" type="number" class="form-control text-center">
+            <span class="input-group-text">Equipe 2</span>
+            <input id="valbb" type="number" class="form-control text-center">
+          </div>
+        </div>
+      </div>
+      <!-- NOMBRE POINTS -->
+      <div class="row mt-3">
+        <div class="col">Tu as :
+          <input class="text-center" id="claca" type="button" value="100"> points.
+        </div>
+        <div class="col">Tu as :
+          <input class="text-center" id="clacb" type="button" value="100"> points.
+        </div>
+      </div>
+      <!-- +/- POINTS -->
+      <div class="row mt-3">
+        <div class="col" id="aficha"></div>
+        <div class="col" id="afichb"></div>
+      </div>
+      <!-- NOMBRE DE CLICKS -->
+      <div class="row mt-3">
+        <div class="col">
+          <button id="clic" type="button" class="btn btn-info" onclick="devinScr()">Click</button>
+        </div>
+      </div>
+      <!-- NOMBRE D ESSAIS -->
+      <div class="row mt-3">
+        <div class="col">
+          <p id="essaieb">Nombre d'essaie:</p>
+          <input id="clocb" type="button" value="">
+          <p>Nombre d'essaie:</p>
+          <input id="cloca" type="button" value="">
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+  </html>
