@@ -11,57 +11,121 @@ var tab = [+50, +100];
 function devinScr() {
   let joer1 = document.getElementById('nom1').value;
   let joer2 = document.getElementById('nom2').value;
-  let NmbrEssA = document.getElementById('cloca');
-  NmbrEssA.value = countera;
-  countera ++;
+
+  let gagn = new SpeechSynthesisUtterance('Bravo ' + joer1 + 'Bravo ' + joer2 + ' , vous avez assuré.');
+  let gagn1 = new SpeechSynthesisUtterance('Bravo ' + joer1 + ' , t\'as assuré.');
+  let gagn2 = new SpeechSynthesisUtterance('Bravo ' + joer2 + ' , t\'as assuré.');
+  let perd = new SpeechSynthesisUtterance('Attention ' + joer1 + 'Attention ' + joer2 + ' , ça craint entre vous deux.');
+  let perd1 = new SpeechSynthesisUtterance('Attention ! ' + joer1 + ' , ça craint.');
+  let perd2 = new SpeechSynthesisUtterance('Attention ! ' + joer2 + ' , ça craint.');
+
   let vaa = document.getElementById('valaa').value;
   let vba = document.getElementById('valba').value;
   var afcha = document.getElementById('aficha');
-  let NmbrEssB = document.getElementById('clocb');
-  NmbrEssB.value = counterb;
-  counterb ++;
   let vab = document.getElementById('valab').value;
   let vbb = document.getElementById('valbb').value;
   var afchb = document.getElementById('afichb');
+  // var nam1 = document.getElementById('nom1').toLowerCase();
+  // var nam2 = document.getElementById('nom2').toLowerCase();
+  // let inpt = document.querySelectorAll('.form-control');
 
   if ((vaa == sol1 && vba == sol2) && (vab == sol1 && vbb == sol2)) {
-    afcha.innerHTML = "Bravo " + joer1 + " ! Score trouvé (" + sol1 + " - " + sol2 +"). Vous êtes à égalité.";
-    afchb.innerHTML = "Bravo " + joer2 + " ! Score trouvé (" + sol1 + " - " + sol2 +"). Vous êtes à égalité.";
+    afcha.innerHTML = 'Bravo ' + joer1 + ' ! Score trouvé (' + sol1 + ' - ' + sol2 + '). Vous êtes à égalité.';
+    afchb.innerHTML = 'Bravo ' + joer2 + ' ! Score trouvé (' + sol1 + ' - ' + sol2 + '). Vous êtes à égalité.';
+    afcha.style.background = 'lightgreen';
+    afchb.style.background = 'palegreen';
+    speechSynthesis.speak(gagn);
+    displayRej();
   } else if (((vaa == sol1 && vba != sol2) || (vaa != sol1 && vba == sol2)) && (vab == sol1 && vbb == sol2)) {
-    afcha.innerHTML = "Ayyayyay " + joer1 + "! Tu as 50% du score, mais" + joer2 + " a trouvé le score." + joer2 + " gagne tes points.";
-    afchb.innerHTML = "Bravo " + joer2 +" ! Score trouvé (" + sol1 + " - " + sol2 +"). Tu gagnes les points de " + joer1 +".";
+    afcha.innerHTML = 'Ayyayyay ' + joer1 + '! Tu as 50% du score, mais' + joer2 + ' a trouvé le score.' + joer2 + ' gagne tes points.';
+    afchb.innerHTML = 'Bravo ' + joer2 + ' ! Score trouvé (' + sol1 + ' - ' + sol2 + '). Tu gagnes les points de ' + joer1 + '.';
+    afcha.style.background = 'salmon';
+    afchb.style.background = 'palegreen';
     pointA.value = 0;
     pointB.value = 200;
+    speechSynthesis.speak(gagn2);
+    displayRej();
   } else if ((vaa == sol1 && vba == sol2) && ((vab == sol1 && vbb != sol2) || (vab != sol1 && vbb == sol2))) {
-    afcha.innerHTML = "Bravo " + joer1 + " ! Score trouvé (" + sol1 + " - " + sol2 +"). Tu gagnes les points de " + joer2 + ".";
-    afchb.innerHTML = "Ayyayyay " + joer2 + " ! Tu as 50% du score, mais " + joer1 + " a trouvé le score." + joer1 +  " gagnes tes points.";
+    afcha.innerHTML = 'Bravo ' + joer1 + ' ! Score trouvé (' + sol1 + ' - ' + sol2 + '). Tu gagnes les points de ' + joer2 + '.';
+    afchb.innerHTML = 'Ayyayyay ' + joer2 + ' ! Tu as 50% du score, mais ' + joer1 + ' a trouvé le score.' + joer1 +  ' gagnes tes points.';
+    afcha.style.background = 'palegreen';
+    afchb.style.background = 'salmon';
     pointA.value = 200;
     pointB.value = 0;
+    speechSynthesis.speak(gagn1);
+    displayRej();
   } else if ((((vaa == sol1 && vba != sol2) || (vaa != sol1 && vba == sol2)) && ((vab != sol1 && vbb == sol2) || (vab == sol1 && vbb != sol2)))) {
-    afcha.innerHTML = "Pas mal " + joer1 + ", tu as 50% de la réponse, tout comme " + joer2 + ". Vous gardez vos points.";
-    afchb.innerHTML = "Pas mal " + joer2 + ", tu as 50% de la réponse, tout comme " + joer1 + ". Vous gardez vos points.";
+    afcha.innerHTML = 'Pas mal ' + joer1 + ', tu as 50% de la réponse, tout comme ' + joer2 + '. Vous gardez vos points.';
+    afchb.innerHTML = 'Pas mal ' + joer2 + ', tu as 50% de la réponse, tout comme ' + joer1 + '. Vous gardez vos points.';
+    afcha.style.background = 'sandybrown';
+    afchb.style.background = 'sandybrown';
+    speechSynthesis.speak(perd);
   } else if ((vaa != sol1 && vba != sol2) && ((vab != sol1 && vbb == sol2) || (vab == sol1 && vbb != sol2))) {
-    afcha.innerHTML = "Dommage " + joer1 + " ! " + joer2 + " a 50% de la réponse." + joer2 + " gagne 50 de tes points.";
-    afchb.innerHTML = "Pas mal " + joer2 + ", tu as 50% de la réponse. Tu gagnes 50 points.";
+    afcha.innerHTML = 'Dommage ' + joer1 + ' ! ' + joer2 + ' a 50% de la réponse.' + joer2 + ' gagne 50 de tes points.';
+    afchb.innerHTML = 'Pas mal ' + joer2 + ', tu as 50% de la réponse. Tu gagnes 50 points.';
+    afcha.style.background = 'sandybrown';
+    afchb.style.background = 'lightcyan';
     pointA.value = parseFloat(pointA.value) - parseFloat(tab[0]);
     pointB.value = parseFloat(pointB.value) + parseFloat(tab[0]);
+    speechSynthesis.speak(perd1);
   } else if (((vaa != sol1 && vba == sol2) || (vaa == sol1 && vba != sol2)) && (vab != sol1 && vbb != sol2)) {
-    afcha.innerHTML = "Pas mal " + joer1 + ", tu as 50% de la réponse. Tu gagnes 50 points.";
-    afchb.innerHTML = "Dommage " + joer2 + " ! " + joer1 + " a 50% de la réponse. " + joer1 + " gagne 50 de tes points.";
+    afcha.innerHTML = 'Pas mal ' + joer1 + ', tu as 50% de la réponse. Tu gagnes 50 points.';
+    afchb.innerHTML = 'Dommage ' + joer2 + ' ! ' + joer1 + ' a 50% de la réponse. ' + joer1 + ' gagne 50 de tes points.';
+    afcha.style.background = 'lightcyan';
+    afchb.style.background = 'sandybrown';
     pointA.value = parseFloat(pointA.value) + parseFloat(tab[0]);
     pointB.value = parseFloat(pointB.value) - parseFloat(tab[0]);
+    speechSynthesis.speak(perd2);
   } else if ((vaa != sol1 && vba != sol2) && (vab != sol1 && vbb != sol2)) {
-    afcha.innerHTML = "Noo " + joer1 + " ! Score pas trouvé, vous gardez toujours vos points.";
-    afchb.innerHTML = "Noo " + joer2 + " ! Score pas trouvé, vous gardez toujours vos points.";
+    afcha.innerHTML = 'Noo ' + joer1 + ' ! Score pas trouvé, vous gardez toujours vos points.';
+    afchb.innerHTML = 'Noo ' + joer2 + ' ! Score pas trouvé, vous gardez toujours vos points.';
+    afcha.style.background = 'sandybrown';
+    afchb.style.background = 'sandybrown';
+    speechSynthesis.speak(perd);
+  } else if ((vaa == sol1 && vba == sol2) && (vab != sol1 && vbb != sol2)) {
+    afcha.innerHTML = "Bravo " + joer1 + ' ! Score trouvé (' + sol1 + ' - ' + sol2 +'). Tu as gagné.';
+    afchb.innerHTML = 'Ayyayyay ' + joer2 + ' ! ' + joer1 + ' a trouvé le score.' + joer2 +  " Tu as Perdu.";
+    afcha.style.background = 'palegreen';
+    afchb.style.background = 'salmon';
+    pointA.value = 200;
+    pointB.value = 0;
+    speechSynthesis.speak(gagn1);
+    displayRej();
+  } else if ((vaa != sol1 && vba != sol2) && (vab == sol1 && vbb == sol2)) {
+    afcha.innerHTML = 'Ayyayyay ' + joer1 + ' ! ' + joer2 + ' a trouvé le score.' + joer1 +  ' Tu as Perdu.';
+    afchb.innerHTML = 'Bravo'  + joer2 + ' ! Score trouvé (' + sol1 + ' - ' + sol2 +'). Tu as gagné.';
+    afcha.style.background = 'salmon';
+    afchb.style.background = 'palegreen';
+    pointA.value = 0;
+    pointB.value = 200;
+    speechSynthesis.speak(gagn2);
+    displayRej();
   }
-  // else if (pointA.value = 200) {
-  //   afcha.innerHTML = "Bravo, " + joer1 + " a gagné le jeu !";
-  //   afchb.innerHTML = "Ayyayyay, " + joer2 + " a Perdu le jeu !";
-  // } else if (pointB.value = 200) {
-  //   afcha.innerHTML = "Ayyayyay, " + joer1 + " a Perdu le jeu !";
-  //   afchb.innerHTML = "Bravo, " + joer2 + " a gagné le jeu !";
-  // }
 }
+
+        //         message.textContent = "C'est Brûlant !!! 🔥🔥🔥 ";
+var anim = document.querySelectorAll('.display-anim');
+
+document.getElementById('play_stop').onclick = function () {
+                        clic
+    for (var i = 0; i < anim.length; i++) {
+        if (anim[i].style.animationPlayState == 'paused') {
+            anim[i].style.animationPlayState = 'running';
+        }
+        else {
+            anim[i].style.animationPlayState = 'paused';
+        }
+    }
+}
+
+function displayRej() {
+      // var x, i;
+      inpt = document.querySelectorAll('.form-control')
+      // x = document.querySelectorAll(".btn");
+      for (i = 0; i < inpt.length; i++) {
+        inpt[i].value = "";
+      }
+    }
 
 
 
